@@ -7,7 +7,8 @@
   register: tenantid
 
 - name: Retrieve instance name from tenant
-  command: nova list --all-tenants --tenant {{ item.stdout }} --fields name
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+           list --all-tenants --tenant {{ item.stdout }} --fields name
   with_items: tenantid.results
   register: instname
 
