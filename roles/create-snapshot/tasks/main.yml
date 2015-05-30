@@ -7,7 +7,7 @@
 
 - name: Retrieve instance name from tenant
   shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-           list --all-tenants --tenant {{ tenantname.stdout }} --minimal | awk 'NR > 2 { print $4 }'
+           list --all-tenants --tenant {{ tenantid.stdout }} --minimal | awk 'NR > 2 { print $4 }'
   register: instname
 
 - debug: var=instname
