@@ -8,7 +8,7 @@
 
 - debug: var=tenantid
 
-- debug: msg="Test id {{ tenantid.stdout }}"
+- debug: msg="Test id {{ tenantid.stdout }} {{ item }}"
 
 #- name: Adjust tenant quotas
 #  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
