@@ -13,4 +13,4 @@
            quota-update {{ item.0 }} {{ item.1 }}
   with_together:
     - qoptions
-    - tenantid.stdout_lines
+    - tenantid.stdout
