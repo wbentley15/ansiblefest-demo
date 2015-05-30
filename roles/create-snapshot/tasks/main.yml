@@ -12,7 +12,7 @@
   with_items: tenantid.results
   register: instname
 
-- debug: var=instname.results[stdout]
+- debug: var=instname.results
 
 #- name: Create instance snapshot
 #  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
