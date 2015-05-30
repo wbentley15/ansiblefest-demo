@@ -2,18 +2,18 @@
 
 - name: Retrieve tenantID
   shell: keystone --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-         tenant-list | awk '/ {{ item }} / { print $2 }'
-  with_items: tenantname
+         tenant-list | awk '/ {{ tenantname }} / { print $2 }'
   register: tenantid
 
 - name: Retrieve instance name from tenant
   shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-           list --all-tenants --tenant {{ item.stdout }} --minimal | awk 'NR > 2 { print $4 }'
-  with_items: tenantid.results
+           list --all-tenants --tenant {{ tenantname.stdout }} --minimal | awk 'NR > 2 { print $4 }'
   register: instname
 
-- debug: msg="{{ item }}"
-  with_items: instname.results.item.stdout.split('\n')
+- debug: var=instname
+
+- debug: msg="{{ item.stdout.split('\n') }}"
+  with_items: instname
 
 #- name: Create instance snapshot
 #  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
