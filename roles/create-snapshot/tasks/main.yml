@@ -12,11 +12,11 @@
   with_items: tenantid.results
   register: instname
 
-- debug: msg="{{ item.stdout.split('\n') }}"
-  with_items: instname.results
+- debug: msg="{{ item }}"
+  with_items: instname.results.item.stdout.split('\n')
 
 #- name: Create instance snapshot
 #  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-#           image-create {{ item.stdout_lines }} snap-{{ item.stdout_lines }}
+#           image-create {{ item }} snap-{{ item }}
 #  with_items: instname.results
-#  when: instname.results.stdout
+#  when: item.stdout.split('\n')
