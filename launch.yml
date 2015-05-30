@@ -1,0 +1,9 @@
+---
+# This playbook used to demo OpenStack Havanna instance creation features. 
+
+- hosts: util_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - launch-instances

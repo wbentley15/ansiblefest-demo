@@ -1,0 +1,13 @@
+---
+
+- name: Retrieve tenantID
+  shell: keystone tenant-list | awk '/ {{ item }} / { print $2 }'
+  with_items: tenantname
+  register: tenantid
+
+- name: Adjust tenant quotas
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           quota-update {{ item.0 }} {{ item.1 }}
+  with_together:
+    - qoptions
+    - tenantid.stdout_lines

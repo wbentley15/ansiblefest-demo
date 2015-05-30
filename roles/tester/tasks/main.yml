@@ -1,0 +1,10 @@
+---
+
+- name: Create Automation user
+  command: keystone --os-token={{ OS_SERVICE_TOKEN }} --os-endpoint={{ OS_AUTH_URL }} user-create --name=test --pass=passwd
+
+- name: Assign Automation user to admin role
+  command: keystone --os-token={{ OS_SERVICE_TOKEN }} --os-endpoint={{ OS_AUTH_URL }} user-role-add --user=test --tenant=admin --role=admin
+
+- name: Create new instance flavor
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} flavor-create m1.test m1test01 512 2 1

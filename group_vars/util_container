@@ -1,0 +1,9 @@
+# Here are variables related to the install
+
+OS_USERNAME: ansible
+OS_PASSWORD: passwd
+OS_TENANT_NAME: admin
+OS_AUTH_URL: http://172.29.236.7:35357/v2.0
+OS_SERVICE_TOKEN: passwd
+KEY_NAME: controller-key
+TENANT_NETWORK: d13791ca-18e3-4cfb-b8ec-7828b2713772 

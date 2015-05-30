@@ -1,0 +1,11 @@
+---
+
+- name: Retrieve instance name from tenant
+  command: nova list --all-tenants 0 --tenant {{ item }} --fields Name
+  with_items: tenantname
+  register: instname
+
+- name: Create instance snapshot
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           image-create {{ item }} snap-{{ item }}
+  with_items: instname.stdout_lines

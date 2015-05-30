@@ -1,0 +1,10 @@
+---
+
+- name: Launch new instances in Operations environment
+  command: nova --os-username={{ OPS_USERNAME }} --os-password={{ OPS_PASSWORD }} --os-tenant-name={{ OPS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} boot --flavor m1.small --image centos-6.5 --nic net-id={{ TENANT_NETWORK }} --security-group default --key-name {{ KEY_NAME }} demo-centos-inst
+  
+- name: Launch new instances in Intelligence environment
+  command: nova --os-username={{ INTEL_USERNAME }} --os-password={{ INTEL_PASSWORD }} --os-tenant-name={{ INTEL_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} boot --flavor m1.rhel.custom01 --image rhel-7.0 --nic net-id={{ TENANT_NETWORK }} --security-group default --key-name {{ KEY_NAME }} demo-rhel-inst
+  
+- name: Launch new instances in Manpower environment
+  command: nova --os-username={{ MANPWR_USERNAME }} --os-password={{ MANPWR_PASSWORD }} --os-tenant-name={{ MANPWR_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} boot --flavor m1.tiny --image cirros-0.3.2 --nic net-id={{ TENANT_NETWORK }} --security-group default --key-name {{ KEY_NAME }} demo-cirros-inst
