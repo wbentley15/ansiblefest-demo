@@ -12,7 +12,7 @@
   with_items: tenantid.results
   register: instname
 
-- debug: msg="{{ item.stdout.split('/n') }}"
+- debug: msg="{{ item.stdout.split('\n') }}"
   with_items: instname.results
 
 #- name: Create instance snapshot
