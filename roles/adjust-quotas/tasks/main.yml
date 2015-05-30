@@ -9,7 +9,7 @@
 - debug: var=tenantid
 
 - name: Test
-  debug: msg="Test id {{ item.stdout }} {{ item }}"
+  debug: msg="Test id {{ item.stdout }}"
   with_items: tenantid.results
 
 #- name: Adjust tenant quotas
