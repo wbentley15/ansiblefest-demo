@@ -12,7 +12,7 @@
   with_items: tenantid.results
   register: instname
 
-- debug: msg="{{ item.stdout|from_json }}
+- debug: msg="{{ item.stdout|from_json }}"
   with_items: instname.results
 
 #- name: Create instance snapshot
