@@ -5,12 +5,12 @@
          tenant-list | awk '/ {{ tenantname }} / { print $2 }'
   register: tenantid
 
-- name: Retrieve instance name from tenant
+- name: Retrieve instance id from tenant
   shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-           list --all-tenants --tenant {{ tenantid.stdout }} --minimal | awk 'NR > 3 { print $4 }'
-  register: instname
+           list --all-tenants --tenant {{ tenantid.stdout }} --minimal | awk 'NR > 3 { print $2 }'
+  register: instid
 
 - name: Create instance snapshot
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           image-create {{ item }} snap-{{ item }}
-  with_items: instname.stdout_lines
+           image-create {{ item }} {{ tenantname }}-snap-{{ item }}
+  with_items: instid.stdout_lines
