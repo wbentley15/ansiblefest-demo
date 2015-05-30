@@ -11,7 +11,7 @@
 
 - name: Adjust tenant quotas
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           quota-update {{ item.0 }} {{ item.1.stdout }}
+           quota-update {{ item.0.qoptions }} {{ item.1.stdout }}
   with_subelements:
-    - qoptions
+    - tenants
     - tenantid.results
