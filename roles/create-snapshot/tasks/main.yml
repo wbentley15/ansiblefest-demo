@@ -10,13 +10,7 @@
            list --all-tenants --tenant {{ tenantid.stdout }} --minimal | awk 'NR > 3 { print $4 }'
   register: instname
 
-- debug: var=instname
-
-- debug: msg="{{ item }}"
+- name: Create instance snapshot
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           image-create {{ item }} snap-{{ item }}
   with_items: instname.stdout_lines
-
-#- name: Create instance snapshot
-#  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-#           image-create {{ item }} snap-{{ item }}
-#  with_items: instname.results
-#  when: item.stdout.split('\n')
