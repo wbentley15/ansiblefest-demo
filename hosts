@@ -1,14 +1,5 @@
 [localhost]
 localhost ansible_connection=local
 
-[student]
-041215-student01
-
-[students]
-041215-student[01:15]
-
 [util_container]
-172.29.236.44
-
-[controller1]
-162.242.212.236
+172.29.236.224
