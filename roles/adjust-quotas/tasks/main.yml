@@ -1,7 +1,8 @@
 ---
 
 - name: Retrieve tenantID
-  shell: keystone tenant-list | awk '/ {{ item }} / { print $2 }'
+  shell: keystone --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+         tenant-list | awk '/ {{ item }} / { print $2 }'
   with_items: tenantname
   register: tenantid
 
