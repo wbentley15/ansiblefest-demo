@@ -12,9 +12,7 @@
   with_items: tenantid.results
   register: instname
 
-- debug: var=instname
-
-#- name: Create instance snapshot
-#  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-#           image-create {{ item.stdout }} snap-{{ item.stdout }}
-#  with_items: instname.results
+- name: Create instance snapshot
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           image-create {{ item.stdout_lines }} snap-{{ item.stdout_lines }}
+  with_items: instname.results
