@@ -6,5 +6,5 @@
   remote_user: root
   sudo: yes
   roles:
-#   - create-snapshot
+    - create-snapshot
     - destroy-users-env

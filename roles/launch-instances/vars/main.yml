@@ -1,0 +1,12 @@
+---
+
+OS_USERNAME: ansible
+OS_PASSWORD: passwd
+OS_TENANT_NAME: admin
+OS_AUTH_URL: http://172.29.236.7:35357/v2.0
+KEY_NAME: controller-key
+SHARED_NETWORK: 11d0eb17-7e18-4a7b-978d-d9475c64d0e0
+FLAVOR: m1.tiny
+OSIMG: cirros-0.3.3
+INSTCNT: 3
+INSTNAME: mrkt-proj01
