@@ -1,8 +1,8 @@
 ---
 
-OS_USERNAME: ansible
-OS_PASSWORD: passwd
-OS_TENANT_NAME: admin
+OS_USERNAME: mrkt-dev01
+OS_PASSWORD: yolfifBar4
+OS_TENANT_NAME: MRKT-Proj01
 OS_AUTH_URL: http://172.29.236.7:35357/v2.0
 KEY_NAME: controller-key
 SHARED_NETWORK: 11d0eb17-7e18-4a7b-978d-d9475c64d0e0
