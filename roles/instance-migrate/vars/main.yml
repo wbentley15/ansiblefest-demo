@@ -1,4 +1,4 @@
 ---
-desthype: 021579-compute03
-instance: testG-1e04fb7a-4724-41c9-adc1-92d7397c77ad
+desthype: 021579-compute01
+instance: testG-c2095e16-8b7c-4588-9aff-e70e2c8e8ddd
 migreason: "Migrating instance to new compute node"

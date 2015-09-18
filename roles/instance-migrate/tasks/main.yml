@@ -10,6 +10,11 @@
            service-disable {{ item }} nova-compute --reason '{{ migreason }}'
   with_items: hypelist.stdout_lines
 
+- name: Collect pre-migration instance details
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           list --name {{ instance }} --fields OS-EXT-SRV-ATTR:host | awk 'NR > 3' | awk '{ print $4 }'
+  register: preinststat
+
 - name: Migrate instance
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
            migrate --poll {{ instance }}
@@ -23,11 +28,13 @@
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
            resize-confirm {{ instance }}
 
-- name: Collect instance details
+- name: Collect post-migration instance details
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           list --name {{ instance }} --fields name,OS-EXT-SRV-ATTR:host,status
-  register: inststat
+           list --name {{ instance }} --fields OS-EXT-SRV-ATTR:host,status | awk 'NR > 3' | awk '{ print $4 " with a status of " $6 }' | awk 'NR == 1'
+  register: postinststat
   
 - name: Show instance location and status
-  debug: msg="{{ item }}"
-  with_items: inststat.stdout_lines
+  debug: msg="{{ instance }} was migrated from {{ item.0 }} to {{ item.1 }}"
+  with_together:
+    - preinststat.stdout_lines
+    - postinststat.stdout_lines
