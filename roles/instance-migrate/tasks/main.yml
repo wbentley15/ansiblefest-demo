@@ -11,7 +11,7 @@
   with_items: hypelist.stdout_lines
 
 - name: Collect pre-migration instance details
-  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+  shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
            list --name {{ instance }} --fields OS-EXT-SRV-ATTR:host | awk 'NR > 3' | awk '{ print $4 }'
   register: preinststat
 
@@ -29,7 +29,7 @@
            resize-confirm {{ instance }}
 
 - name: Collect post-migration instance details
-  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+  shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
            list --name {{ instance }} --fields OS-EXT-SRV-ATTR:host,status | awk 'NR > 3' | awk '{ print $4 " with a status of " $6 }' | awk 'NR == 1'
   register: postinststat
   
