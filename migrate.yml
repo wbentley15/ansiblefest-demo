@@ -1,0 +1,9 @@
+---
+# This playbook used to migrate instance to specific compute node. 
+
+- hosts: util_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - instance-migrate

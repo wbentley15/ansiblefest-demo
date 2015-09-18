@@ -1,7 +1,7 @@
 ---
 
 OS_USERNAME: mrkt-dev01
-OS_PASSWORD: yolfifBar4
+OS_PASSWORD: TysEesk2
 OS_TENANT_NAME: MRKT-Proj01
 OS_AUTH_URL: http://172.29.236.7:35357/v2.0
 KEY_NAME: controller-key

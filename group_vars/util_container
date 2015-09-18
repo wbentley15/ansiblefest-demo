@@ -1,4 +1,4 @@
-# Here are variables related to the install
+# Here are variables related globally to the util_container host group
 
 OS_USERNAME: ansible
 OS_PASSWORD: passwd

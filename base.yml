@@ -1,5 +1,5 @@
 ---
-# This playbook used to demo OpenStack Havanna user, role, image and volume features. 
+# This playbook used to demo OpenStack Juno user, role and tenant features. 
 
 - hosts: util_container
   user: root

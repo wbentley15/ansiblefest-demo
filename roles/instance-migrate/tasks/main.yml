@@ -1,0 +1,33 @@
+---
+
+- name: Retrieve hypervisor list
+  shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+         hypervisor-list | awk 'NR > 3' | awk '$4 != "{{ desthype }}" { print $4 }'
+  register: hypelist
+
+- name: Disable unselected hypervisors
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           service-disable {{ item }} nova-compute --reason '{{ migreason }}'
+  with_items: hypelist.stdout_lines
+
+- name: Migrate instance
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           migrate --poll {{ instance }}
+
+- name: Enable the disabled hypervisors
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           service-enable {{ item }} nova-compute
+  with_items: hypelist.stdout_lines
+
+- name: Confirm instance migration
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           resize-confirm {{ instance }}
+
+- name: Collect instance details
+  command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
+           list --name {{ instance }} --fields name,OS-EXT-SRV-ATTR:host,status
+  register: inststat
+  
+- name: Show instance location and status
+  debug: msg="{{ item }}"
+  with_items: inststat.stdout_lines
