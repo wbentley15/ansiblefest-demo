@@ -7,8 +7,8 @@ compute:
   - name: 021579-compute03
 
 allow_vol_type:
-  - name: vol_type1, volnum: 100
-  - name: vol_type3, volnum: 50
+  - { name: vol_type1, volnum: 100 }
+  - { name: vol_type3, volnum: 50 }
 
 restrict_vol_type:
   - name: vol_type2
