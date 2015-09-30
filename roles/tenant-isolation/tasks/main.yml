@@ -19,8 +19,10 @@
 
 - name: Add hosts to aggregate, one command for each host using the ID from the aggregate just created
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-           aggregate-add-host {{ aggre1.stdout }} {{ item.name }}
-  with_items: compute
+           aggregate-add-host {{ item.0 }} {{ item.1.name }}
+  with_items:
+    - aggre1.stdout
+    - compute
 
 - name: Update aggregate metadata to include tenant ID filter
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
