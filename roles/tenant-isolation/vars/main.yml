@@ -4,7 +4,6 @@ description: Tenant B
 
 compute:
   - name: 021579-compute01
-  - name: 021579-compute02
   - name: 021579-compute03
 
 allow_vol_type:
