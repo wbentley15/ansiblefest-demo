@@ -1,6 +1,6 @@
 ---
 tenant_name: tenantB
-description: Tenant B 
+tenant_desc: Tenant B 
 
 compute:
   - name: 021579-compute01
