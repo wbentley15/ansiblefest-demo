@@ -1,0 +1,21 @@
+---
+tenant_name: tenantB
+description: Tenant B 
+
+compute:
+  - name: 021579-compute01
+  - name: 021579-compute02
+  - name: 021579-compute03
+
+allow_vol_type:
+  - name: vol_type1, volnum: 100
+  - name: vol_type3, volnum: 50
+
+restrict_vol_type:
+  - name: vol_type2
+  - name: vol_type4
+
+flavor_name: m1.custom.small
+flavor_ram: 2000
+flavor_disk: 20
+flavor_cpu: 2

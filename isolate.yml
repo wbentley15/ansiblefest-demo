@@ -1,0 +1,9 @@
+---
+# This playbook used to configure Multi-Tenant Isolation. 
+
+- hosts: util_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - tenant-isolation
