@@ -10,11 +10,11 @@
 
 - name: Create new host aggregate
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-           aggregate-create {{ tenant_name }}_agg
+           aggregate-create {{ agg_name }}
 
 - name: Get new aggregate ID
   shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-         aggregate-list | awk '/ {{ tenant_name }}_agg / {print $2}'
+         aggregate-list | awk '/ {{ agg_name }} / {print $2}'
   register: aggre1
 
 - name: Show variable value

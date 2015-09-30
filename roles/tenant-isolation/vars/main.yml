@@ -1,6 +1,7 @@
 ---
 tenant_name: tenantB
-tenant_desc: Tenant B 
+tenant_desc: Tenant B
+agg_name: tenantB_agg
 
 compute:
   - name: 021579-compute01
