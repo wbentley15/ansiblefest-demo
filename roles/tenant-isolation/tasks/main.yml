@@ -17,6 +17,11 @@
          aggregate-list | awk '/ {{ tenant_name }} / {print $2}'
   register: aggre1
 
+- name: Show variable value
+  debug: msg="{{ item.0 }}"
+  with_items:
+    - aggre1.stdout
+
 - name: Add hosts to aggregate, one command for each host using the ID from the aggregate just created
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
            aggregate-add-host {{ item.0 }} {{ item.1.name }}
