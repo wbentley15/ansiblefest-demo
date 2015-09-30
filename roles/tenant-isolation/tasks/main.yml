@@ -18,7 +18,7 @@
   register: aggre1
 
 - name: Show variable value
-  debug: var="{{ aggre1 }}"
+  debug: var=aggre1
  
 - name: Add hosts to aggregate, one command for each host using the ID from the aggregate just created
   command: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
