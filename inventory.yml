@@ -7,3 +7,10 @@
   sudo: yes
   roles:
     - cloud-inventory
+    
+- hosts: utility_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - cloud-usage

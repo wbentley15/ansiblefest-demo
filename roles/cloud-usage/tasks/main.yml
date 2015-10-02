@@ -1,0 +1,10 @@
+---
+- name: Retrieve tenantIDs
+  shell: keystone --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+         tenant-list | awk 'NR > 3 { print $2 }'
+  register: tenantid
+
+- name: Record tenant usage
+  shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+         usage --tenant {{ item }} >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
+  with_items: tenantid.stdout_lines
