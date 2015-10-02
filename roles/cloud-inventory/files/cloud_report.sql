@@ -1,3 +1,4 @@
+USE keystone;
 SELECT count(*) as total_users from user WHERE user.enabled=1;
 SELECT count(*) as total_tenants from project WHERE project.enabled=1;
 SELECT count(*) as total_volumes from volumes WHERE volumes.status='available';
