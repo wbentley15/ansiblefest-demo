@@ -21,4 +21,4 @@
   shell: echo "{{ company }} Cloud Report" >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
 
 - name: Execute cloud_report
-  shell: chdir=/usr/bin mysql -u root --password={{ mysqlpass }} < /usr/share/cloud_report.sql >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
+  shell: chdir=/usr/bin mysql -u root --password={{ mysqlpass }} --table < /usr/share/cloud_report.sql >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
