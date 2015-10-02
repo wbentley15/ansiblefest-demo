@@ -7,3 +7,4 @@ OS_AUTH_URL: http://172.29.236.7:35357/v2.0
 OS_SERVICE_TOKEN: passwd
 KEY_NAME: controller-key
 TENANT_NETWORK: d13791ca-18e3-4cfb-b8ec-7828b2713772
+REPORT_DIR: /usr/share/os-report
