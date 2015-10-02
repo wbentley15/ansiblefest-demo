@@ -7,7 +7,7 @@
   copy: src=volume_report.sql dest=/usr/share mode=0755
   
 - name: Add report header
-  shell: ( echo "+----------------------------------+"; echo "| Cloud Volume Report           |"; echo "+----------------------------------+"; ) >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
+  shell: ( echo "+----------------------------------+"; echo "| Cloud Volume Report      |"; echo "+----------------------------------+"; ) >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
 
 - name: Execute volume report
   shell: chdir=/usr/bin mysql -u root --password={{ MYSQLPASS }} --table < /usr/share/volume_report.sql >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
