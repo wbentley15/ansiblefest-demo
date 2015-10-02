@@ -1,0 +1,24 @@
+---
+- name: Create working directory
+  shell: mkdir /usr/share/os-report
+
+- name: Copy the cloud_report script
+  copy: src=cloud_report.sql dest=/usr/share mode=0755
+
+- name: Copy the user_report script
+  copy: src=user_report.sql dest=/usr/share mode=0755
+  
+- name: Copy the tenant_report script
+  copy: src=tenant_report.sql dest=/usr/share mode=0755
+  
+- name: Copy the network_report script
+  copy: src=network_report.sql dest=/usr/share mode=0755
+  
+- name: Copy the volume_report script
+  copy: src=volume_report.sql dest=/usr/share mode=0755
+  
+- name: Add report header
+  shell: echo "{{ company }} Cloud Report" >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
+
+- name: Execute cloud_report
+  shell: chdir=/usr/bin mysql -u root --password={{ mysqlpass }} < /usr/share/cloud_report.sql >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
