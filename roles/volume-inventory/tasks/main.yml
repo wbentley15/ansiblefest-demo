@@ -9,7 +9,7 @@
 - name: Add report header
   shell: echo "+----------------------------------+"; echo "| Cloud Volume Report           |"; echo "+----------------------------------+"; >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
 
-- name: Execute cloud_report
+- name: Execute volume report
   shell: chdir=/usr/bin mysql -u root --password={{ MYSQLPASS }} --table < /usr/share/volume_report.sql >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
   
 - name: Retrieve completed cloud report file
