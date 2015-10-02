@@ -13,7 +13,7 @@
 
 - name: Record tenant usage
   shell: ( echo "Tenant - {{ item }}" && nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-         usage --tenant {{ item }} && echo " " ) >> {{ REPORT_DIR }}/os_usage_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
+         usage --start {{ RPTSTART }} --end {{ RPTEND }} --tenant {{ item }} && echo " " ) >> {{ REPORT_DIR }}/os_usage_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
   with_items: tenantid.stdout_lines
 
 - name: Retrieve tenant usage report file
