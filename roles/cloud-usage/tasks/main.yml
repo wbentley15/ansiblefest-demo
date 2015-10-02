@@ -9,10 +9,10 @@
   register: tenantid
 
 - name: Add report header
-  shell: ( echo "+------------------------------------+"; echo "| Tenant Usage Report         |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; ) >> {{ REPORT_DIR }}/os_usage_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
+  shell: ( echo "+------------------------------------+"; echo "| Tenant Usage Report              |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; echo " "; ) >> {{ REPORT_DIR }}/os_usage_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log 
 
 - name: Record tenant usage
-  shell: echo "Tenant - {{ item }}" ; nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
+  shell: ( echo "Tenant - {{ item }}" ; ) nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
          usage --tenant {{ item }} >> {{ REPORT_DIR }}/os_usage_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
   with_items: tenantid.stdout_lines
 
