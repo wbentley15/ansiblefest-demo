@@ -14,3 +14,13 @@
   sudo: yes
   roles:
     - cloud-usage
+
+- hosts: galera_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - user-inventory
+    - tenant-inventory
+    - network-inventory
+    - volume-inventory
