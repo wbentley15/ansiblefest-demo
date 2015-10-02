@@ -6,5 +6,5 @@
 
 - name: Record tenant usage
   shell: nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }}
-         usage --tenant {{ item }} >> /usr/share/os-report/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
+         usage --tenant {{ item }} >> {{ REPORT_DIR }}/os_report_{{ lookup('pipe', 'date +%Y%m%d') }}.log
   with_items: tenantid.stdout_lines

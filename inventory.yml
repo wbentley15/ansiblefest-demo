@@ -8,7 +8,7 @@
   roles:
     - cloud-inventory
     
-- hosts: utility_container
+- hosts: util_container
   user: root
   remote_user: root
   sudo: yes
