@@ -1,6 +1,6 @@
 ---
 - name: Combine Infrastructure and Core OS output
-  shell: cat {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+  shell: cat {{ REPORT_DEST }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
 
 - name: Check OS service status
   shell: ansible -i {{ DEPLOY_LOC }}/inventory/dynamic_inventory.py  {{ item.0.name }} -m shell 

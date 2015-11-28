@@ -3,3 +3,4 @@
 REPORT_DIR: /usr/share/os-report
 COMPANY: Rackspace RPC
 DEPLOY_LOC: /opt/os-ansible-deployment/rpc_deployment
+REPORT_DEST: /usr/share/
