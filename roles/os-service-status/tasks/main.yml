@@ -5,3 +5,6 @@
   with_subelements:
     - os_group
     - process
+
+- name: Combine Infrastructure and Core OS output
+  shell: cat {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt

@@ -1,4 +1,8 @@
 ---
+- name: Create working directory
+  shell: mkdir {{ REPORT_DIR }}
+  ignore_errors: yes
+  
 - name: Verify Keystone functionality
   shell: ( keystone --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
            service-list && echo " " ) >> {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
