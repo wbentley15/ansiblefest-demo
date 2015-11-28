@@ -1,5 +1,5 @@
 ---
-# This playbook used to run a cloud resource inventory report. 
+# This playbook used to run a cloud health check report. 
 
 - hosts: localhost
   user: root

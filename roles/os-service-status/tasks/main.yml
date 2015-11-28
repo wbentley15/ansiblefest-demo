@@ -8,12 +8,3 @@
   with_subelements:
     - os_group
     - process
-
-- name: Send report via e-mail 
-  mail: 
-    host='smtp.gmail.com'
-    port=587
-    to="walter.bentley@rackspace.com"
-    subject='Cloud Health Check Report'
-    body='Report run from {{ ansible_hostname }} has been successfully run.'
-    attach="{{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt"

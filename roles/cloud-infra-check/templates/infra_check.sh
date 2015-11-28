@@ -1,7 +1,6 @@
 #
 # Script to automate OpenStack cloud Infrastructure services health check
 #
-#
 NOW=$(date +"%Y%m%d")
 
 # Check health of MariaDB and Galera
