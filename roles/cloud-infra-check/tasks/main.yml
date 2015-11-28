@@ -7,7 +7,7 @@
   template: src=infra_check.sh dest={{ DEPLOY_LOC }} mode=0755
 
 - name: Add report header
-  shell: ( echo "+------------------------------------+"; echo "| {{ COMPANY }} Cloud Health Check   |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+  shell: ( echo "+------------------------------------+"; echo "| {{ COMPANY }} Cloud Health Check   |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; echo " ";) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
 
 - name: Execute Infrastructure services check script
   shell: "'{{ DEPLOY_LOC }}/infra_check.sh' {{ REPORT_DIR }}"
