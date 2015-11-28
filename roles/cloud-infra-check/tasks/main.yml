@@ -10,4 +10,4 @@
   shell: ( echo "+------------------------------------+"; echo "| {{ COMPANY }} Cloud Health Check         |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
 
 - name: Execute Infrastructure services check script
-  shell: infra_check.sh {{ REPORT_DIR }} chdir=/opt/os-ansible-deployment/rpc_deployment
+  shell: /opt/os-ansible-deployment/rpc_deployment/infra_check.sh {{ REPORT_DIR }}
