@@ -1,18 +1,18 @@
 ---
 - name: Verify Keystone functionality
   shell: ( keystone --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           service-list && echo " " ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+           service-list && echo " " ) >> {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
   ignore_errors: yes
 
 - name: Verify Nova functionality
   shell: ( nova --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           service-list && echo " " ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+           service-list && echo " " ) >> {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
   ignore_errors: yes
   
 - name: Verify Neutron functionality
   shell: ( neutron --os-username={{ OS_USERNAME }} --os-password={{ OS_PASSWORD }} --os-tenant-name={{ OS_TENANT_NAME }} --os-auth-url={{ OS_AUTH_URL }} 
-           agent-list && echo " " ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+           agent-list && echo " " ) >> {{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
   ignore_errors: yes
   
 - name: Retrieve core OS output file
-  fetch: src={{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt dest={{ REPORT_DEST }} flat=yes
+  fetch: src={{ REPORT_DIR }}/core_os_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt dest={{ REPORT_DEST }} flat=yes
