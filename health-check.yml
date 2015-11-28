@@ -1,0 +1,23 @@
+---
+# This playbook used to run a cloud resource inventory report. 
+
+- hosts: localhost
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - cloud-infra-check
+    
+- hosts: util_container
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - cloud-core-os-check
+
+- hosts: localhost
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - os-service-status

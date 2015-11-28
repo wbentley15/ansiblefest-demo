@@ -1,0 +1,28 @@
+---
+os_group:
+  - name: keystone_container
+    process:
+      - apache2
+  - name: compute_hosts
+    process:
+      - nova-compute
+      - neutron-linuxbridge-agent
+  - name: nova_api_os_compute_container
+    process:
+      - nova-api-os-compute
+  - name: nova_scheduler_container
+    process:
+      - nova-scheduler
+  - name: neutron_server_container
+    process:
+      - neutron-server
+  - name: neutron_linuxbridge_agent
+    process:
+      - neutron-linuxbridge-agent
+  - name: glance_container
+    process:
+      - glance-api
+      - glance-registry
+  - name: horizon_container
+    process:
+      - apache2

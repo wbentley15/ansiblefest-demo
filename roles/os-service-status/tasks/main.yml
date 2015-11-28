@@ -1,0 +1,6 @@
+---
+- name: Check OS service status
+  shell: ansible {{ item.0.name }} -m shell -a "service {{ item.1 }} status" >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+  with_subelements:
+    - os_group
+    - process

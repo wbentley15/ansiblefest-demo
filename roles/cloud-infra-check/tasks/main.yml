@@ -1,0 +1,13 @@
+---
+- name: Create working directory
+  shell: mkdir {{ REPORT_DIR }}
+  ignore_errors: yes
+
+- name: Copy the Infrastructure services check script
+  copy: src=infra_check.sh dest=/opt/os-ansible-deployment/rpc_deployment mode=0755
+
+- name: Add report header
+  shell: ( echo "+------------------------------------+"; echo "| {{ COMPANY }} Cloud Health Check         |"; echo "| Created at {{ lookup('pipe', 'date +%Y-%m-%d%t%X') }}  |"; echo "+------------------------------------+"; ) >> {{ REPORT_DIR }}/os_health_check_{{ lookup('pipe', 'date +%Y%m%d') }}.txt
+
+- name: Execute Infrastructure services check script
+  shell: ./opt/os-ansible-deployment/rpc_deployment/infra_check.sh {{ REPORT_DIR }}

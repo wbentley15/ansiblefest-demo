@@ -1,0 +1,4 @@
+# Here are variables related globally to the util_container host group
+
+REPORT_DIR: /usr/share/os-report
+COMPANY: Rackspace RPC
